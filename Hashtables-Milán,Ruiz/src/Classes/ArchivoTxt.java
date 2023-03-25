@@ -18,6 +18,7 @@ import javax.swing.JFileChooser;
 public class ArchivoTxt {
 
     public Resumen leerTxt() {
+        //Programa que convierte el txt en un objeto "Resumen"
         String title = "";
         String [] authors= new String[0];
         String body = "";
