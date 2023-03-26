@@ -8,6 +8,7 @@ import Classes.ArchivoTxt;
 import Classes.Resumen;
 import Classes.GUIFunctions;
 import java.io.File;
+import Classes.Hashtable;
 /**
  *
  * @author <Joseph Ruiz EDD Unimet>
@@ -19,12 +20,16 @@ public class WelcomeGUI extends javax.swing.JFrame {
     Object[] txtArray= new Object[2];
     //Cambiar esto por la clase hashtable
     Object[] hasthtable= new Object[1001];
+    static Hashtable hashtable;
+    
     /**
      * Creates new form WelcomeGUI
      */
-    public WelcomeGUI() {
+    public WelcomeGUI(Hashtable hashtable) {
         initComponents();
         setLocationRelativeTo(null);
+        this.hashtable=hashtable;
+        
     }
 
     /**
@@ -116,7 +121,7 @@ public class WelcomeGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new WelcomeGUI().setVisible(true);
+                new WelcomeGUI( hashtable).setVisible(true);
             }
         });
     }
