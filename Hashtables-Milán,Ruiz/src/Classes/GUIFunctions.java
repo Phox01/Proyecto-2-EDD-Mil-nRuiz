@@ -13,12 +13,19 @@ import javax.swing.JOptionPane;
  */
 public class GUIFunctions {
 
-    public void avisoEmpty(boolean value) {
+    public void avisoEmpty(boolean value, Resumen resumen,Object[] hashtable) {
         if (value == true) {
             JOptionPane.showMessageDialog(null, "El resumen tiene algún campo vacío");
         } else {
-            JOptionPane.showMessageDialog(null, "El resumen es correcto");
-
+            JOptionPane.showMessageDialog(null, "El resumen fue introducido con éxito");
+            introduceInHashtable(resumen, hashtable);
+        }
+    }
+    public void introduceInHashtable(Resumen resumen, Object [] hashtable){
+        for (int i = 0; i < hashtable.length; i++) {
+            if(hashtable[i]==null){
+                hashtable[i]=resumen;
+            }
         }
     }
 

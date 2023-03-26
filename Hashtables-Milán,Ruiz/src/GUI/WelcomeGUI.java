@@ -16,6 +16,8 @@ public class WelcomeGUI extends javax.swing.JFrame {
     GUIFunctions functions= new GUIFunctions();
     String[] table=new String[0];
     Resumen resumenTxt= new Resumen("", table, "", table);
+    //Cambiar esto por la clase hashtable
+    Object[] hasthtable= new Object[1001];
     /**
      * Creates new form WelcomeGUI
      */
@@ -78,7 +80,7 @@ public class WelcomeGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ImportActionPerformed
 
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
-        functions.avisoEmpty(resumenTxt.isEmpty());
+        functions.avisoEmpty(resumenTxt.isEmpty(), resumenTxt, hasthtable);
     }//GEN-LAST:event_okActionPerformed
 
     /**
