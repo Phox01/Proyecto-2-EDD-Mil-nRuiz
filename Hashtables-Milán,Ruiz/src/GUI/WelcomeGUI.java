@@ -7,6 +7,7 @@ package GUI;
 import Classes.ArchivoTxt;
 import Classes.Resumen;
 import Classes.GUIFunctions;
+import java.io.File;
 /**
  *
  * @author <Joseph Ruiz EDD Unimet>
@@ -15,7 +16,7 @@ public class WelcomeGUI extends javax.swing.JFrame {
     ArchivoTxt txt= new ArchivoTxt();
     GUIFunctions functions= new GUIFunctions();
     String[] table=new String[0];
-    Resumen resumenTxt= new Resumen("", table, "", table);
+    Object[] txtArray= new Object[2];
     //Cambiar esto por la clase hashtable
     Object[] hasthtable= new Object[1001];
     /**
@@ -76,11 +77,13 @@ public class WelcomeGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportActionPerformed
-        resumenTxt= txt.leerTxt();
+        txtArray= txt.readTxt();
     }//GEN-LAST:event_ImportActionPerformed
 
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
-        functions.avisoEmpty(resumenTxt.isEmpty(), resumenTxt, hasthtable);
+        Resumen resumenTxt=(Resumen) txtArray[1];
+        File from= (File) txtArray[0];
+        functions.avisoEmpty(resumenTxt.isEmpty(), resumenTxt, hasthtable, from);
     }//GEN-LAST:event_okActionPerformed
 
     /**

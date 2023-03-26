@@ -5,6 +5,7 @@
  */
 package Classes;
 
+import java.io.File;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,12 +14,15 @@ import javax.swing.JOptionPane;
  */
 public class GUIFunctions {
 
-    public void avisoEmpty(boolean value, Resumen resumen,Object[] hashtable) {
+    public void avisoEmpty(boolean value, Resumen resumen,Object[] hashtable, File file) {
         if (value == true) {
             JOptionPane.showMessageDialog(null, "Oooops, el error se pudo deber a:\nEl resumen tiene algún campo vacío \nEl resumen no tiene el formato correspondiente");
         } else {
             JOptionPane.showMessageDialog(null, "El resumen fue introducido con éxito");
             introduceInHashtable(resumen, hashtable);
+            ArchivoTxt archivo= new ArchivoTxt();
+            archivo.copyTxt(file, resumen.getTitle());
+            
         }
     }
     public void introduceInHashtable(Resumen resumen, Object [] hashtable){
