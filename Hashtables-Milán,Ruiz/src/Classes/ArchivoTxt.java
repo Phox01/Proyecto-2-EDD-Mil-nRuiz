@@ -20,9 +20,9 @@ public class ArchivoTxt {
     public Resumen leerTxt() {
         //Programa que convierte el txt en un objeto "Resumen"
         String title = "";
-        String [] authors= new String[0];
+        String [] authors= new String[1];
         String body = "";
-        String[] keywords= new String[0];
+        String[] keywords= new String[1];
         String line = "";
         Resumen resumenText = new Resumen(title, authors, body, keywords);
         String resumenCompleto = "";
@@ -67,7 +67,7 @@ public class ArchivoTxt {
             JOptionPane.showMessageDialog(null, "lectura exitosa");
 
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "error");
+            JOptionPane.showMessageDialog(null, "Error, asegúrese de introducir un resumen con los sig. campos:\nTítulo\nAutores\nResumen\nPalabras clave");
 
         }
         return resumenText;

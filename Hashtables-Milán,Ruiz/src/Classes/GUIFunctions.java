@@ -15,7 +15,7 @@ public class GUIFunctions {
 
     public void avisoEmpty(boolean value, Resumen resumen,Object[] hashtable) {
         if (value == true) {
-            JOptionPane.showMessageDialog(null, "El resumen tiene algún campo vacío");
+            JOptionPane.showMessageDialog(null, "Oooops, el error se pudo deber a:\nEl resumen tiene algún campo vacío \nEl resumen no tiene el formato correspondiente");
         } else {
             JOptionPane.showMessageDialog(null, "El resumen fue introducido con éxito");
             introduceInHashtable(resumen, hashtable);
