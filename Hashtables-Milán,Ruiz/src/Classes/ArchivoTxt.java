@@ -62,7 +62,7 @@ public class ArchivoTxt {
                 title = resumenSplit[0];
                 String[] authors_body = resumenSplit[1].split("Resumen");
                 authors = authors_body[0].split("\n");
-                String[] body_keywords = authors_body[1].split("Palabras claves: ");
+                String[] body_keywords = authors_body[1].split("Palabras claves: |Palabras Claves: ");
                 body = body_keywords[0];
                 keywords = body_keywords[1].split(", ");
                 data[1] = new Resumen(title, authors, body, keywords);
@@ -72,7 +72,7 @@ public class ArchivoTxt {
             JOptionPane.showMessageDialog(null, "Lectura exitosa");
 
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error, asegúrese de introducir un resumen con los sig. campos:\nTítulo\nAutores\nResumen\nPalabras clave");
+            JOptionPane.showMessageDialog(null, "Error, asegúrese de introducir un resumen con los sig. campos:\nTítulo\nAutores\nResumen\nPalabras claves");
 
         }
 

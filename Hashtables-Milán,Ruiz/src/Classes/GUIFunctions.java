@@ -7,7 +7,7 @@ package Classes;
 
 import java.io.File;
 import javax.swing.JOptionPane;
- import Classes.Hashtable;
+import Classes.Hashtable;
 
 /**
  *
