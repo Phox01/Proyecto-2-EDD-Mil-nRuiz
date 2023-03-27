@@ -15,7 +15,7 @@ import Classes.Hashtable;
  */
 public class GUIFunctions {
 
-    public void avisoEmpty(boolean value, Resumen resumen,Object[] hashtable, File file) {
+   public void avisoEmpty(boolean value, Resumen resumen,Hashtable hashtable, File file) {
         if (value == true) {
             JOptionPane.showMessageDialog(null, "Oooops, el error se pudo deber a:\nEl resumen tiene algún campo vacío \nEl resumen no tiene el formato correspondiente");
         } else {
@@ -26,12 +26,15 @@ public class GUIFunctions {
             
         }
     }
-    public void introduceInHashtable(Resumen resumen, Object [] hashtable){
-        for (int i = 0; i < hashtable.length; i++) {
-            if(hashtable[i]==null){
-                hashtable[i]=resumen;
-            }
-        }
+    public void introduceInHashtable(Resumen resumen, Hashtable hashtable){
+        System.out.println(resumen.getTitle());
+        
+        
+        
+         int numero=hashtable.NumeroHashtable(resumen.getTitle());
+        hashtable.getArray()[numero]= resumen;
+
+
     }
 
 }

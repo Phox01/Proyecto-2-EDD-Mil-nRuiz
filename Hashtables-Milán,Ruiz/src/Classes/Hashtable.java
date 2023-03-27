@@ -11,20 +11,20 @@ package Classes;
  */
 public class Hashtable {
     
-    private Object[] array;
+    private Resumen[] array;
     
     private int size;
 
     public Hashtable() {
-        this.array = new Object[8009];
+        this.array = new Resumen[8009];
         this.size = 8009;
     }
 
-    public Object[] getArray() {
+    public Resumen[] getArray() {
         return array;
     }
 
-    public void setArray(Object[] array) {
+    public void setArray(Resumen[] array) {
         this.array = array;
     }
 
@@ -35,16 +35,17 @@ public class Hashtable {
     public void setSize(int size) {
         this.size = size;
     }
+
+ 
     
     
     
     
-    
-    public int NumeroHash(Resumen res){//String titulo){
+    public int NumeroHashtable(String res){//String titulo){
         
           int numero =0;  
         
-       String titulo= res.getTitle();
+       String titulo= res;
     for (int i=0; i < titulo.length(); i++){
         int contador = 0;
         

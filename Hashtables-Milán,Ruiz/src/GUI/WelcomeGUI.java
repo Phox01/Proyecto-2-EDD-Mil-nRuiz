@@ -19,7 +19,7 @@ public class WelcomeGUI extends javax.swing.JFrame {
     String[] table=new String[0];
     Object[] txtArray= new Object[2];
     //Cambiar esto por la clase hashtable
-    Object[] hasthtable= new Object[1001];
+    //Object[] hasthtable= new Object[1001];
     static Hashtable hashtable;
     
     /**
@@ -44,6 +44,7 @@ public class WelcomeGUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         Import = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         ok = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
@@ -63,6 +64,14 @@ public class WelcomeGUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("MetroMendeley");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, -1));
+
+        jButton1.setText("MENU");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, -1, -1));
 
         ok.setText("OK");
         ok.addActionListener(new java.awt.event.ActionListener() {
@@ -88,8 +97,17 @@ public class WelcomeGUI extends javax.swing.JFrame {
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
         Resumen resumenTxt=(Resumen) txtArray[1];
         File from= (File) txtArray[0];
-        functions.avisoEmpty(resumenTxt.isEmpty(), resumenTxt, hasthtable, from);
+        functions.avisoEmpty(resumenTxt.isEmpty(), resumenTxt, hashtable, from);
     }//GEN-LAST:event_okActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         MenuGUI1 window2= new MenuGUI1(hashtable);
+        window2.setVisible(true);
+        this.setVisible(false);
+                
+                
+                
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,6 +146,7 @@ public class WelcomeGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Import;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
