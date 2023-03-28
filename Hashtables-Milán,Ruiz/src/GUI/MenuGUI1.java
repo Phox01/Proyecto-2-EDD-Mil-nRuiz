@@ -20,6 +20,7 @@ public class MenuGUI1 extends javax.swing.JFrame {
     public MenuGUI1(Hashtable hashtable) {
         initComponents();
         this.hashtable=hashtable;
+        setLocationRelativeTo(null);
         
         
         for (int i = 0; i < hashtable.getArray().length; i++) {
@@ -50,12 +51,13 @@ public class MenuGUI1 extends javax.swing.JFrame {
         boton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         AreaTexto = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("MENU ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 140, -1));
+        jLabel1.setText("Menu");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 70, -1));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -79,6 +81,10 @@ public class MenuGUI1 extends javax.swing.JFrame {
         jScrollPane1.setViewportView(AreaTexto);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 250, 120));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/obit.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 300));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 270));
 
@@ -170,6 +176,7 @@ public class MenuGUI1 extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> Investigaciones;
     private javax.swing.JButton boton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

@@ -44,8 +44,9 @@ public class WelcomeGUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         Import = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        menugui = new javax.swing.JButton();
         ok = new javax.swing.JButton();
+        exit = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,13 +66,13 @@ public class WelcomeGUI extends javax.swing.JFrame {
         jLabel1.setText("MetroMendeley");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, -1));
 
-        jButton1.setText("MENU");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        menugui.setText("Menu");
+        menugui.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                menuguiActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, -1, -1));
+        jPanel1.add(menugui, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, -1, -1));
 
         ok.setText("OK");
         ok.addActionListener(new java.awt.event.ActionListener() {
@@ -80,6 +81,14 @@ public class WelcomeGUI extends javax.swing.JFrame {
             }
         });
         jPanel1.add(ok, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
+
+        exit.setText("Salir");
+        exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
+        jPanel1.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/obit.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -100,14 +109,18 @@ public class WelcomeGUI extends javax.swing.JFrame {
         functions.avisoEmpty(resumenTxt.isEmpty(), resumenTxt, hashtable, from);
     }//GEN-LAST:event_okActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void menuguiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuguiActionPerformed
          MenuGUI1 window2= new MenuGUI1(hashtable);
         window2.setVisible(true);
         this.setVisible(false);
                 
                 
                 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_menuguiActionPerformed
+
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_exitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,10 +159,11 @@ public class WelcomeGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Import;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton exit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton menugui;
     private javax.swing.JButton ok;
     // End of variables declaration//GEN-END:variables
 }
