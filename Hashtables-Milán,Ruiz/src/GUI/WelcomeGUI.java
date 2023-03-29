@@ -9,6 +9,8 @@ import Classes.Resumen;
 import Classes.GUIFunctions;
 import java.io.File;
 import Classes.Hashtable;
+import Classes.HashTableTitulos;
+import Classes.ListaPalabrasClave;
 /**
  *
  * @author <Joseph Ruiz EDD Unimet>
@@ -21,15 +23,17 @@ public class WelcomeGUI extends javax.swing.JFrame {
     //Cambiar esto por la clase hashtable
     //Object[] hasthtable= new Object[1001];
     static Hashtable hashtable;
-    
+    static HashTableTitulos hashtable2;
+    static ListaPalabrasClave listaPalabrasClave;
     /**
      * Creates new form WelcomeGUI
      */
-    public WelcomeGUI(Hashtable hashtable) {
+    public WelcomeGUI(Hashtable hashtable,HashTableTitulos hashtable2,ListaPalabrasClave listaPalabrasClave) {
         initComponents();
         setLocationRelativeTo(null);
         this.hashtable=hashtable;
-        
+        this.hashtable2=hashtable2;
+        this.listaPalabrasClave=listaPalabrasClave;
     }
 
     /**
@@ -106,11 +110,11 @@ public class WelcomeGUI extends javax.swing.JFrame {
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
         Resumen resumenTxt=(Resumen) txtArray[1];
         File from= (File) txtArray[0];
-        functions.avisoEmpty(resumenTxt.isEmpty(), resumenTxt, hashtable, from);
+        functions.avisoEmpty(resumenTxt.isEmpty(), resumenTxt, hashtable, from, hashtable2,listaPalabrasClave);
     }//GEN-LAST:event_okActionPerformed
 
     private void menuguiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuguiActionPerformed
-         MenuGUI1 window2= new MenuGUI1(hashtable);
+         Controlador window2= new Controlador(hashtable,hashtable2,listaPalabrasClave);
         window2.setVisible(true);
         this.setVisible(false);
                 
@@ -152,7 +156,7 @@ public class WelcomeGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new WelcomeGUI( hashtable).setVisible(true);
+                new WelcomeGUI( hashtable,hashtable2,listaPalabrasClave).setVisible(true);
             }
         });
     }

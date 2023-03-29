@@ -6,6 +6,10 @@
 package Main;
 import GUI.WelcomeGUI;
 import Classes.Hashtable;
+import Classes.HashTableTitulos;
+import Classes.NodoTitulos;
+import Classes.ListaTitulos;
+import Classes.ListaPalabrasClave;
 /**
  *
  * @author <Joseph Ruiz EDD Unimet>
@@ -17,8 +21,19 @@ public class Main {
      */
     public static void main(String[] args) {
         Hashtable hashtable= new Hashtable();
-        WelcomeGUI window= new WelcomeGUI(hashtable);
+        HashTableTitulos hashtable2=new HashTableTitulos();
+        
+         ListaPalabrasClave listaPalabrasClave= new ListaPalabrasClave();
+        WelcomeGUI window= new WelcomeGUI(hashtable,hashtable2,listaPalabrasClave);
+        
         window.setVisible(true);
+        
+        
+        
+       
+        
+        
+        
     }
     
 }
