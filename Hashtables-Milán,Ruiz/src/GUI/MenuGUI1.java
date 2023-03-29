@@ -45,19 +45,16 @@ public class MenuGUI1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         Investigaciones = new javax.swing.JComboBox<>();
         boton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         AreaTexto = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setText("Menu");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 70, -1));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -66,7 +63,7 @@ public class MenuGUI1 extends javax.swing.JFrame {
                 InvestigacionesActionPerformed(evt);
             }
         });
-        jPanel1.add(Investigaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 280, 40));
+        jPanel1.add(Investigaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 300, 40));
 
         boton.setText("OK");
         boton.addActionListener(new java.awt.event.ActionListener() {
@@ -74,19 +71,22 @@ public class MenuGUI1 extends javax.swing.JFrame {
                 botonActionPerformed(evt);
             }
         });
-        jPanel1.add(boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, -1, -1));
+        jPanel1.add(boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, -1, -1));
 
         AreaTexto.setColumns(20);
         AreaTexto.setRows(5);
         jScrollPane1.setViewportView(AreaTexto);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 250, 120));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 300, 120));
+
+        jLabel1.setText("Menu");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 70, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/obit.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 300));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 330));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 270));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 330));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

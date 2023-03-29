@@ -10,9 +10,9 @@ package Classes;
  * @author <Joseph Ruiz EDD Unimet>
  */
 public class Hashtable {
-    
+
     private Resumen[] array;
-    
+
     private int size;
 
     public Hashtable() {
@@ -36,29 +36,23 @@ public class Hashtable {
         this.size = size;
     }
 
- 
-    
-    
-    
-    
-    public int NumeroHashtable(String res){//String titulo){
-        
-          int numero =0;  
-        
-       String titulo= res;
-    for (int i=0; i < titulo.length(); i++){
-        int contador = 0;
-        
-        contador = titulo.codePointAt(i); 
-        
-        numero=numero + (contador*i);
-       
-    }
-    
-        numero=numero%8009;
-        
+    public int NumeroHashtable(String res) {//String titulo){
+
+        int numero = 0;
+
+        String titulo = res;
+        for (int i = 0; i < titulo.length(); i++) {
+            int contador = 0;
+
+            contador = titulo.codePointAt(i);
+
+            numero = numero + (contador * i);
+
+        }
+
+        numero = numero % 8009;
+
         return numero;
     }
 
-    
 }

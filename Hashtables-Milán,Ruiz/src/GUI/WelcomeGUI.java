@@ -4,32 +4,40 @@
  * and open the template in the editor.
  */
 package GUI;
+
 import Classes.ArchivoTxt;
 import Classes.Resumen;
 import Classes.GUIFunctions;
 import java.io.File;
 import Classes.Hashtable;
+
 /**
  *
  * @author <Joseph Ruiz EDD Unimet>
  */
 public class WelcomeGUI extends javax.swing.JFrame {
-    ArchivoTxt txt= new ArchivoTxt();
-    GUIFunctions functions= new GUIFunctions();
-    String[] table=new String[0];
-    Object[] txtArray= new Object[2];
+
+    static File[] fileArray;
+    static Resumen[] resumenes;
+    static Hashtable hashtable;
+
+    ArchivoTxt txt = new ArchivoTxt();
+    GUIFunctions functions = new GUIFunctions();
+    String[] table = new String[0];
+    Object[] txtArray = new Object[2];
     //Cambiar esto por la clase hashtable
     //Object[] hasthtable= new Object[1001];
-    static Hashtable hashtable;
-    
+
     /**
      * Creates new form WelcomeGUI
      */
-    public WelcomeGUI(Hashtable hashtable) {
+    public WelcomeGUI(Hashtable hashtable, File[] fileArray, Resumen[] resumenes) {
         initComponents();
         setLocationRelativeTo(null);
-        this.hashtable=hashtable;
-        
+        this.hashtable = hashtable;
+        this.fileArray = fileArray;
+        this.resumenes = resumenes;
+
     }
 
     /**
@@ -100,26 +108,30 @@ public class WelcomeGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportActionPerformed
-        txtArray= txt.readTxt();
+        txtArray = txt.readTxt();
     }//GEN-LAST:event_ImportActionPerformed
 
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
-        Resumen resumenTxt=(Resumen) txtArray[1];
-        File from= (File) txtArray[0];
-        functions.avisoEmpty(resumenTxt.isEmpty(), resumenTxt, hashtable, from);
+        Resumen resumenTxt = (Resumen) txtArray[1];
+        File from = (File) txtArray[0];
+        Object[] arrayFileResumen = functions.introduce(resumenTxt.isEmpty(), resumenTxt, hashtable, from, fileArray, resumenes);
+        if ((boolean) arrayFileResumen[2] != false) {
+            fileArray = (File[]) arrayFileResumen[0];
+            resumenes = (Resumen[]) arrayFileResumen[1];
+        }
+
     }//GEN-LAST:event_okActionPerformed
 
     private void menuguiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuguiActionPerformed
-         MenuGUI1 window2= new MenuGUI1(hashtable);
+        MenuGUI1 window2 = new MenuGUI1(hashtable);
         window2.setVisible(true);
-        this.setVisible(false);
-                
-                
-                
+        this.dispose();
     }//GEN-LAST:event_menuguiActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
-        // TODO add your handling code here:
+        functions.saveData(fileArray, resumenes);
+        this.dispose();
+        
     }//GEN-LAST:event_exitActionPerformed
 
     /**
@@ -152,7 +164,7 @@ public class WelcomeGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new WelcomeGUI( hashtable).setVisible(true);
+                new WelcomeGUI(hashtable, fileArray, resumenes).setVisible(true);
             }
         });
     }
