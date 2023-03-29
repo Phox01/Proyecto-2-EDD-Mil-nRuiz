@@ -3,38 +3,40 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI;
+
 import Classes.Hashtable;
 import Classes.HashTableTitulos;
 import Classes.ListaPalabrasClave;
-import Classes.NodoTitulos;
+import Classes.ListaAutores;
+import Classes.HashTableTitulosAutores;
 import Classes.ListaTitulos;
-import Classes.Resumen;
-import Classes.NodoPalabrasClave;
-
+import Classes.NodoAutores;
+import Classes.NodoTitulos;
+import static GUI.PalabrasClaves.hashtable;
+import static GUI.PalabrasClaves.hashtable2;
 /**
  *
  * @author enriq
  */
-public class PalabrasClaves extends javax.swing.JFrame {
+public class Autores extends javax.swing.JFrame {
 
     /**
-     * Creates new form PalabrasClaves
+     * Creates new form Autores
      */
+    
     
     static Hashtable hashtable;
     static HashTableTitulos hashtable2;
-    static ListaPalabrasClave listaPalabrasClave;
-    
-    public PalabrasClaves(Hashtable hashtable,HashTableTitulos hashtable2,ListaPalabrasClave listaPalabrasClave) {
+    static HashTableTitulosAutores hashtable3;
+    static ListaAutores listaAutores;
+    public Autores(Hashtable hashtable,HashTableTitulosAutores hashtable3,ListaAutores listaAutores) {
         initComponents();
         this.hashtable=hashtable;
-        this.hashtable2=hashtable2;
-        this.listaPalabrasClave=listaPalabrasClave;
+        this.hashtable3=hashtable3;
+        this.listaAutores=listaAutores;
         
         
-        
-        
-        NodoPalabrasClave pointer = listaPalabrasClave.getPrimero();
+         NodoAutores pointer = listaAutores.getPrimero();
 
         
         while (pointer != null) {
@@ -45,6 +47,20 @@ public class PalabrasClaves extends javax.swing.JFrame {
             pointer = pointer.getSiguiente();
         }
     }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,11 +74,10 @@ public class PalabrasClaves extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         AreaTexto = new javax.swing.JTextArea();
-        option1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
-        optionmostrar = new javax.swing.JButton();
+        option1 = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
         option2 = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -73,46 +88,44 @@ public class PalabrasClaves extends javax.swing.JFrame {
         AreaTexto.setRows(5);
         jScrollPane1.setViewportView(AreaTexto);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 240, 210));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 230, 200));
 
-        jPanel1.add(option1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, -1, -1));
-
-        jButton1.setText("OK");
+        jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
 
-        optionmostrar.setText("OK");
-        optionmostrar.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.add(option1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, -1, -1));
+
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                optionmostrarActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(optionmostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, -1, -1));
 
-        jPanel1.add(option2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, -1));
+        jPanel1.add(option2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, -1, -1));
 
-        jLabel1.setText("Palabras Clave");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 90, -1));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -3, 400, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        String palabra=option1.getSelectedItem().toString();
-        
+    String palabra=option1.getSelectedItem().toString();
         
         
-        int numero=hashtable2.NumeroHashtableTitulo(palabra);
         
-        ListaTitulos listat=hashtable2.getArray()[numero];
+        int numero=hashtable3.NumeroHashtableTituloAutores(palabra);
         
+        ListaTitulos listat=hashtable3.getArray()[numero];
+        
+        
+        listat.Imprimir();
         NodoTitulos pointer=listat.getPrimero();
         
        
@@ -120,12 +133,19 @@ public class PalabrasClaves extends javax.swing.JFrame {
             option2.addItem(pointer.getDato());
             pointer=pointer.getSiguiente();
         }
+               
+        
+        
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void optionmostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionmostrarActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
         
-        String palabra=option2.getSelectedItem().toString();
+        
+        if (!option2.getSelectedItem().toString().equals("")){
+            String palabra=option2.getSelectedItem().toString();
         
         int numero= hashtable.NumeroHashtable(palabra);
         
@@ -146,7 +166,9 @@ public class PalabrasClaves extends javax.swing.JFrame {
         }
         
         AreaTexto.setText(texto);
-    }//GEN-LAST:event_optionmostrarActionPerformed
+        
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,20 +187,20 @@ public class PalabrasClaves extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PalabrasClaves.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Autores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PalabrasClaves.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Autores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PalabrasClaves.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Autores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PalabrasClaves.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Autores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PalabrasClaves(hashtable,hashtable2,listaPalabrasClave).setVisible(true);
+                new Autores( hashtable, hashtable3, listaAutores).setVisible(true);
             }
         });
     }
@@ -186,11 +208,10 @@ public class PalabrasClaves extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea AreaTexto;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> option1;
     private javax.swing.JComboBox<String> option2;
-    private javax.swing.JButton optionmostrar;
     // End of variables declaration//GEN-END:variables
 }

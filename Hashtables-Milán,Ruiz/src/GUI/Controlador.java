@@ -6,6 +6,7 @@ package GUI;
 import Classes.Hashtable;
 import Classes.Resumen;
 import Classes.HashTableTitulos;
+import Classes.HashTableTitulosAutores;
 
 import static GUI.MenuGUI1.hashtable;
 import static GUI.PalabrasClaves.hashtable;
@@ -14,6 +15,8 @@ import static GUI.PalabrasClaves.listaPalabrasClave;
 import static GUI.WelcomeGUI.hashtable;
 import static GUI.WelcomeGUI.hashtable2;
 import Classes.ListaPalabrasClave;
+import Classes.ListaAutores;
+
 /**
  *
  * @author enriq
@@ -25,12 +28,15 @@ public class Controlador extends javax.swing.JFrame {
      */
     static Hashtable hashtable;
     static HashTableTitulos hashtable2;
+    static HashTableTitulosAutores hashtable3;
     static ListaPalabrasClave listaPalabrasClave;
-    public Controlador(Hashtable hashtable,HashTableTitulos hashtable2,ListaPalabrasClave listaPalabrasClave) {
+    static ListaAutores listaAutores;
+    public Controlador(Hashtable hashtable,HashTableTitulos hashtable2,ListaPalabrasClave listaPalabrasClave,ListaAutores listaAutores,HashTableTitulosAutores hashtable3) {
         this.hashtable=hashtable;
         this.hashtable2=hashtable2;
         this.listaPalabrasClave=listaPalabrasClave;
-        
+        this.listaAutores= listaAutores;
+        this.hashtable3=hashtable3;
         initComponents();
     }
 
@@ -70,6 +76,11 @@ public class Controlador extends javax.swing.JFrame {
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 180, 40));
 
         jButton3.setText("BUSCAR AUTOR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 170, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
@@ -93,6 +104,15 @@ public class Controlador extends javax.swing.JFrame {
         this.setVisible(false);  
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+      
+        Autores window4= new Autores(hashtable,hashtable3,listaAutores);
+        window4.setVisible(true);
+        this.setVisible(false);
+
+
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,7 +144,7 @@ public class Controlador extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Controlador(hashtable,hashtable2,listaPalabrasClave).setVisible(true);
+                new Controlador(hashtable,hashtable2,listaPalabrasClave, listaAutores,hashtable3).setVisible(true);
             }
         });
     }

@@ -9,7 +9,9 @@ import java.io.File;
 import javax.swing.JOptionPane;
 import Classes.Hashtable;
 import Classes.HashTableTitulos;
+import Classes.HashTableTitulosAutores;
 import Classes.ListaTitulos;
+import Classes.ListaAutores;
 
 /**
  *
@@ -17,18 +19,20 @@ import Classes.ListaTitulos;
  */
 public class GUIFunctions {
 
-   public void avisoEmpty(boolean value, Resumen resumen,Hashtable hashtable, File file,HashTableTitulos hashtable2,ListaPalabrasClave listapalabarasclave) {
+   public void avisoEmpty(boolean value, Resumen resumen,Hashtable hashtable, File file,HashTableTitulos hashtable2,ListaPalabrasClave listapalabarasclave,ListaAutores listaAutores,HashTableTitulosAutores hashtable3) {
         if (value == true) {
             JOptionPane.showMessageDialog(null, "Oooops, el error se pudo deber a:\nEl resumen tiene algún campo vacío \nEl resumen no tiene el formato correspondiente");
         } else {
             JOptionPane.showMessageDialog(null, "El resumen fue introducido con éxito");
             introduceInHashtable(resumen, hashtable);
             introducePalabrasClaves( resumen,  hashtable2);
+            introduceAutores( resumen,  hashtable3);
             ArchivoTxt archivo= new ArchivoTxt();
             archivo.copyTxt(file, resumen.getTitle());
             
-            
-            InsertarLista( listapalabarasclave, resumen);
+            //System.out.println("si");
+            InsertarListaClave( listapalabarasclave, resumen);
+            InsertarListaAutores( listaAutores, resumen);
             
             
         }
@@ -53,13 +57,13 @@ public class GUIFunctions {
             
             
             if (hashtable2.getArray()[numero]==null){
-                System.out.println("hola");
+                
             ListaTitulos listat= new ListaTitulos();
             hashtable2.getArray()[numero]= listat;
          
             hashtable2.getArray()[numero].InsertarPrimero(titulo);
             }else{
-                System.out.println("hola2");
+                
                 hashtable2.getArray()[numero].InsertarPrimero(titulo);
             }
             
@@ -67,8 +71,38 @@ public class GUIFunctions {
         
     }
     
+    public void introduceAutores(Resumen resumen, HashTableTitulosAutores hashtable3){
+        for (int i = 0; i < resumen.getAuthors().length; i++) {
+            
+            int numero=hashtable3.NumeroHashtableTituloAutores(resumen.getAuthors()[i]);
+            String titulo = resumen.getTitle();
+            
+            
+            if (hashtable3.getArray()[numero]==null){
+                
+            ListaTitulos listat= new ListaTitulos();
+            hashtable3.getArray()[numero]= listat;
+         
+            hashtable3.getArray()[numero].InsertarPrimero(titulo);
+            }else{
+                
+                hashtable3.getArray()[numero].InsertarPrimero(titulo);
+            }
+            
+        }
+        
+        
+        
+        
+    }
     
-    public void InsertarLista(ListaPalabrasClave listapalabarasclave,Resumen resumen){
+    
+    
+    
+    
+    
+    
+    public void InsertarListaClave(ListaPalabrasClave listapalabarasclave,Resumen resumen){
         
         for (int i = 0; i < resumen.getKeywords().length; i++) {
             
@@ -77,6 +111,22 @@ public class GUIFunctions {
             
             
             listapalabarasclave.InsertarPrimero(resumen.getKeywords()[i]);
+            
+            
+            
+        }
+   
+    }
+    
+      public void InsertarListaAutores(ListaAutores listaAutores,Resumen resumen){
+        
+        for (int i = 0; i < resumen.getAuthors().length; i++) {
+            
+            
+            
+            
+            
+            listaAutores.InsertarPrimero(resumen.getAuthors()[i]);
             
             
             

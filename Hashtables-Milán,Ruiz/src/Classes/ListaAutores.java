@@ -8,22 +8,22 @@ package Classes;
  *
  * @author enriq
  */
-public class ListaPalabrasClave {
-    private NodoPalabrasClave primero;
+public class ListaAutores {
+      private NodoAutores primero;
     
     private int size;
 
-    public ListaPalabrasClave() {
+    public ListaAutores() {
         this.primero = null;
         
         this.size=0;
     }
 
-    public NodoPalabrasClave getPrimero() {
+    public NodoAutores getPrimero() {
         return primero;
     }
 
-    public void setPrimero(NodoPalabrasClave primero) {
+    public void setPrimero(NodoAutores primero) {
         this.primero = primero;
     }
 
@@ -40,13 +40,13 @@ public class ListaPalabrasClave {
     }
     
     
-        public void InsertarPrimero(String info){
+      public void InsertarPrimero(String info){
             
-       
         
         
-          if (buscarNodo(info)==false){ 
-        NodoPalabrasClave node= new NodoPalabrasClave(info );
+        
+           if (buscarNodo(info)==false){ 
+        NodoAutores node= new NodoAutores(info );
         
         if (isEmpty()){
             primero= node;
@@ -59,25 +59,23 @@ public class ListaPalabrasClave {
         size++;
            }
         
-        
     }
     
     
          public boolean buscarNodo(String dato){
-         
              
-         if (isEmpty()){
-             return false;
-         }else{
-         NodoPalabrasClave node= new NodoPalabrasClave(dato);
-         NodoPalabrasClave pointer= getPrimero();
-         while(!pointer.getDato().equals(node.getDato())&& null!=pointer.getSiguiente()){
+             
+             if (!isEmpty()){
+         
+         NodoAutores node= new NodoAutores(dato);
+         NodoAutores pointer= getPrimero();
+         while(null!=pointer.getSiguiente() && !pointer.getDato().equals(node.getDato()) ){
          
              
              pointer=pointer.getSiguiente();
          }
       
-         if (pointer.getDato()==node.getDato()){
+         if (pointer.getDato().equals(node.getDato())){
              
              
                  
@@ -85,12 +83,12 @@ public class ListaPalabrasClave {
                  
              }
          }
-         return false;
-         
+             return false;
      }
     
+    
          public void Imprimir(){
-         NodoPalabrasClave pointer= getPrimero();
+         NodoAutores pointer= getPrimero();
          while(pointer!=null){
              
              System.out.println(pointer.getDato());
@@ -99,4 +97,7 @@ public class ListaPalabrasClave {
         
          }
     
+    
+    
+      
 }

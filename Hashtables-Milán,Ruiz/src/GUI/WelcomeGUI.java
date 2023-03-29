@@ -11,6 +11,8 @@ import java.io.File;
 import Classes.Hashtable;
 import Classes.HashTableTitulos;
 import Classes.ListaPalabrasClave;
+import Classes.ListaAutores;
+import Classes.HashTableTitulosAutores;
 /**
  *
  * @author <Joseph Ruiz EDD Unimet>
@@ -25,15 +27,20 @@ public class WelcomeGUI extends javax.swing.JFrame {
     static Hashtable hashtable;
     static HashTableTitulos hashtable2;
     static ListaPalabrasClave listaPalabrasClave;
+    static ListaAutores listaAutores;
+    static HashTableTitulosAutores hashtable3;
     /**
      * Creates new form WelcomeGUI
      */
-    public WelcomeGUI(Hashtable hashtable,HashTableTitulos hashtable2,ListaPalabrasClave listaPalabrasClave) {
+    public WelcomeGUI(Hashtable hashtable,HashTableTitulos hashtable2,ListaPalabrasClave listaPalabrasClave,ListaAutores listaAutores,HashTableTitulosAutores hashtable3) {
         initComponents();
         setLocationRelativeTo(null);
         this.hashtable=hashtable;
         this.hashtable2=hashtable2;
         this.listaPalabrasClave=listaPalabrasClave;
+        this.listaAutores=listaAutores;
+        this.hashtable3=hashtable3;
+     
     }
 
     /**
@@ -110,12 +117,12 @@ public class WelcomeGUI extends javax.swing.JFrame {
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
         Resumen resumenTxt=(Resumen) txtArray[1];
         File from= (File) txtArray[0];
-        functions.avisoEmpty(resumenTxt.isEmpty(), resumenTxt, hashtable, from, hashtable2,listaPalabrasClave);
+        functions.avisoEmpty(resumenTxt.isEmpty(), resumenTxt, hashtable, from, hashtable2,listaPalabrasClave,listaAutores,hashtable3);
     }//GEN-LAST:event_okActionPerformed
 
     private void menuguiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuguiActionPerformed
-         Controlador window2= new Controlador(hashtable,hashtable2,listaPalabrasClave);
-        window2.setVisible(true);
+         Controlador window10= new Controlador(hashtable,hashtable2,listaPalabrasClave,listaAutores,hashtable3);
+        window10.setVisible(true);
         this.setVisible(false);
                 
                 
@@ -156,7 +163,7 @@ public class WelcomeGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new WelcomeGUI( hashtable,hashtable2,listaPalabrasClave).setVisible(true);
+                new WelcomeGUI( hashtable,hashtable2,listaPalabrasClave,listaAutores, hashtable3).setVisible(true);
             }
         });
     }
