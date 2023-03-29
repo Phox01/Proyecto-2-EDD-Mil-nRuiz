@@ -54,7 +54,7 @@ public class Resumen {
     /**
      * @param authors the authors to set
      */
-    public void setAuthors(String [] authors) {
+    public void setAuthors(String[] authors) {
         this.authors = authors;
     }
 
@@ -75,14 +75,14 @@ public class Resumen {
     /**
      * @return the keywords
      */
-    public String []getKeywords() {
+    public String[] getKeywords() {
         return keywords;
     }
 
     /**
      * @param keywords the keywords to set
      */
-    public void setKeywords(String [] keywords) {
+    public void setKeywords(String[] keywords) {
         this.keywords = keywords;
     }
 

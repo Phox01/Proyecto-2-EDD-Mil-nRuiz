@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI;
+
 import Classes.Hashtable;
 import Classes.Resumen;
 
@@ -15,25 +16,20 @@ public class MenuGUI1 extends javax.swing.JFrame {
     /**
      * Creates new form MenuGUI
      */
-    
     static Hashtable hashtable;
+
     public MenuGUI1(Hashtable hashtable) {
         initComponents();
-        this.hashtable=hashtable;
+        this.hashtable = hashtable;
         setLocationRelativeTo(null);
-        
-        
+
         for (int i = 0; i < hashtable.getArray().length; i++) {
-            
-            
-            if(hashtable.getArray()[i]!=null){
+
+            if (hashtable.getArray()[i] != null) {
                 Investigaciones.addItem(hashtable.getArray()[i].getTitle());
             }
         }
-        
-        
-        
-        
+
     }
 
     /**
@@ -96,43 +92,38 @@ public class MenuGUI1 extends javax.swing.JFrame {
     }//GEN-LAST:event_InvestigacionesActionPerformed
 
     private void botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActionPerformed
-     
-       String texto=Investigaciones.getSelectedItem().toString();
-       String mostrar="";
-        
-       int numerobusqueda=hashtable.NumeroHashtable(texto);
-        
-       Resumen res= hashtable.getArray()[numerobusqueda];
-       
-       String hola= res.getBody();
-       String[] dividido1 = hola.split(" ");
-       
+
+        String texto = Investigaciones.getSelectedItem().toString();
+        String mostrar = "";
+
+        int numerobusqueda = hashtable.NumeroHashtable(texto);
+
+        Resumen res = hashtable.getArray()[numerobusqueda];
+
+        String hola = res.getBody();
+        String[] dividido1 = hola.split(" ");
+
         System.out.println(res.getKeywords().length);
-       
+
         for (int i = 0; i < res.getKeywords().length; i++) {
-            
-            int contador =0;
-            String palabra=res.getKeywords()[i];
-            
+
+            int contador = 0;
+            String palabra = res.getKeywords()[i];
+
             System.out.println(palabra);
-            
-            
-        for (int k = 0; k < dividido1.length; k++) {
-            if (dividido1[k].contains(palabra)){
-                contador++;
+
+            for (int k = 0; k < dividido1.length; k++) {
+                if (dividido1[k].contains(palabra)) {
+                    contador++;
+                }
+
             }
-            
-            
-            
+            mostrar = mostrar + "palabra clave : " + palabra + " aparece " + Integer.toString(contador) + " veces\n";
+
         }
-          mostrar=mostrar+"palabra clave : "+palabra+" aparece "+ Integer.toString(contador)+" veces\n";  
-            
-            
-        }
-       AreaTexto.setText(mostrar);
-       
-        
-        
+        AreaTexto.setText(mostrar);
+
+
     }//GEN-LAST:event_botonActionPerformed
 
     /**
