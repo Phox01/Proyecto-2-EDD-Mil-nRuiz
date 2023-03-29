@@ -37,6 +37,7 @@ public class Controlador extends javax.swing.JFrame {
         this.listaPalabrasClave=listaPalabrasClave;
         this.listaAutores= listaAutores;
         this.hashtable3=hashtable3;
+        setLocationRelativeTo(null);
         initComponents();
     }
 
@@ -107,7 +108,7 @@ public class Controlador extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
       
-        Autores window4= new Autores(hashtable,hashtable3,listaAutores);
+        Autores window4= new Autores(hashtable,hashtable3,listaAutores,listaPalabrasClave);
         window4.setVisible(true);
         this.setVisible(false);
 

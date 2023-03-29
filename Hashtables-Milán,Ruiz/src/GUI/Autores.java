@@ -12,6 +12,9 @@ import Classes.HashTableTitulosAutores;
 import Classes.ListaTitulos;
 import Classes.NodoAutores;
 import Classes.NodoTitulos;
+import static GUI.Controlador.hashtable;
+import static GUI.Controlador.hashtable3;
+import static GUI.Controlador.listaAutores;
 import static GUI.PalabrasClaves.hashtable;
 import static GUI.PalabrasClaves.hashtable2;
 /**
@@ -29,12 +32,14 @@ public class Autores extends javax.swing.JFrame {
     static HashTableTitulos hashtable2;
     static HashTableTitulosAutores hashtable3;
     static ListaAutores listaAutores;
-    public Autores(Hashtable hashtable,HashTableTitulosAutores hashtable3,ListaAutores listaAutores) {
+    static ListaPalabrasClave listaPalabrasClave;
+    public Autores(Hashtable hashtable,HashTableTitulosAutores hashtable3,ListaAutores listaAutores, ListaPalabrasClave listaPalabrasClave) {
         initComponents();
         this.hashtable=hashtable;
         this.hashtable3=hashtable3;
         this.listaAutores=listaAutores;
-        
+        this.listaPalabrasClave=listaPalabrasClave;
+        setLocationRelativeTo(null);
         
          NodoAutores pointer = listaAutores.getPrimero();
 
@@ -78,6 +83,8 @@ public class Autores extends javax.swing.JFrame {
         option1 = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
         option2 = new javax.swing.JComboBox<>();
+        jButton3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -90,7 +97,7 @@ public class Autores extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 230, 200));
 
-        jButton1.setText("jButton1");
+        jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -100,15 +107,26 @@ public class Autores extends javax.swing.JFrame {
 
         jPanel1.add(option1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, -1, -1));
 
-        jButton2.setText("jButton2");
+        jButton2.setText("OK");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, -1, -1));
 
         jPanel1.add(option2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, -1, -1));
+
+        jButton3.setText("ATRAS");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
+
+        jLabel1.setText("Busqueda por Autor");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -3, 400, 300));
 
@@ -135,7 +153,7 @@ public class Autores extends javax.swing.JFrame {
         }
                
         
-        
+        AreaTexto.setText("");
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -170,6 +188,16 @@ public class Autores extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+      
+        Controlador window4= new Controlador( hashtable, hashtable2, listaPalabrasClave, listaAutores, hashtable3);
+        window4.setVisible(true);
+        this.setVisible(false);
+        
+        
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -200,7 +228,7 @@ public class Autores extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Autores( hashtable, hashtable3, listaAutores).setVisible(true);
+                new Autores( hashtable, hashtable3, listaAutores,listaPalabrasClave).setVisible(true);
             }
         });
     }
@@ -209,6 +237,8 @@ public class Autores extends javax.swing.JFrame {
     private javax.swing.JTextArea AreaTexto;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> option1;
