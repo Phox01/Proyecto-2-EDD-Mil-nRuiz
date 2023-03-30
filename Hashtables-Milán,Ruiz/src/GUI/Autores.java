@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import Classes.GUIFunctions;
 import Classes.Hashtable;
 import Classes.HashTableTitulos;
 import Classes.ListaPalabrasClave;
@@ -17,6 +18,7 @@ import static GUI.Controlador.hashtable3;
 import static GUI.Controlador.listaAutores;
 import static GUI.PalabrasClaves.hashtable;
 import static GUI.PalabrasClaves.hashtable2;
+
 /**
  *
  * @author enriq
@@ -26,46 +28,33 @@ public class Autores extends javax.swing.JFrame {
     /**
      * Creates new form Autores
      */
-    
-    
     static Hashtable hashtable;
     static HashTableTitulos hashtable2;
     static HashTableTitulosAutores hashtable3;
     static ListaAutores listaAutores;
     static ListaPalabrasClave listaPalabrasClave;
-    public Autores(Hashtable hashtable,HashTableTitulosAutores hashtable3,ListaAutores listaAutores, ListaPalabrasClave listaPalabrasClave) {
-        initComponents();
-        this.hashtable=hashtable;
-        this.hashtable3=hashtable3;
-        this.listaAutores=listaAutores;
-        this.listaPalabrasClave=listaPalabrasClave;
-        setLocationRelativeTo(null);
-        
-         NodoAutores pointer = listaAutores.getPrimero();
+    static Controlador Guimenu;
+    GUIFunctions funciones=new GUIFunctions();
 
-        
+    public Autores(Hashtable hashtable, HashTableTitulosAutores hashtable3, ListaAutores listaAutores, ListaPalabrasClave listaPalabrasClave, Controlador Guimenu) {
+        initComponents();
+        this.hashtable = hashtable;
+        this.hashtable3 = hashtable3;
+        this.listaAutores = listaAutores;
+        this.listaPalabrasClave = listaPalabrasClave;
+        this.Guimenu=Guimenu;
+        setLocationRelativeTo(null);
+
+        NodoAutores pointer = listaAutores.getPrimero();
+
         while (pointer != null) {
             //recorre el grafo con un nodo aux pointer y se agregan las opciones en el jcombobox
             option1.addItem(pointer.getDato());
-            
 
             pointer = pointer.getSiguiente();
         }
+        ok.setVisible(false);
     }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -79,12 +68,14 @@ public class Autores extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         AreaTexto = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        buscar = new javax.swing.JButton();
         option1 = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
+        ok = new javax.swing.JButton();
         option2 = new javax.swing.JComboBox<>();
-        jButton3 = new javax.swing.JButton();
+        atras = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -95,108 +86,90 @@ public class Autores extends javax.swing.JFrame {
         AreaTexto.setRows(5);
         jScrollPane1.setViewportView(AreaTexto);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 230, 200));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 380, 230));
 
-        jButton1.setText("OK");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buscar.setText("Buscar");
+        buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buscarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
+        jPanel1.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 130, -1, -1));
 
-        jPanel1.add(option1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, -1, -1));
+        jPanel1.add(option1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 310, -1));
 
-        jButton2.setText("OK");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        ok.setText("OK");
+        ok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                okActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, -1, -1));
+        jPanel1.add(ok, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, -1, -1));
 
-        jPanel1.add(option2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, -1, -1));
+        jPanel1.add(option2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 360, -1));
 
-        jButton3.setText("ATRAS");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        atras.setText("Atrás");
+        atras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                atrasActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
+        jPanel1.add(atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 350, -1, -1));
 
         jLabel1.setText("Busqueda por Autor");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -3, 400, 300));
+        jLabel3.setText("Al ingresar, presiona primero el boton de buscar");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/obit.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 780, 400));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -3, 770, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    String palabra=option1.getSelectedItem().toString();
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        option2.removeAllItems();
         
-        
-        
-        int numero=hashtable3.NumeroHashtableTituloAutores(palabra);
-        
-        ListaTitulos listat=hashtable3.getArray()[numero];
-        
-        
+        String palabra = option1.getSelectedItem().toString();
+
+        int numero = hashtable3.NumeroHashtableTituloAutores(palabra);
+
+        ListaTitulos listat = hashtable3.getArray()[numero];
+
         listat.Imprimir();
-        NodoTitulos pointer=listat.getPrimero();
-        
-       
-        while(pointer!=null){
+        NodoTitulos pointer = listat.getPrimero();
+
+        while (pointer != null) {
             option2.addItem(pointer.getDato());
-            pointer=pointer.getSiguiente();
+            pointer = pointer.getSiguiente();
         }
-               
-        
+
         AreaTexto.setText("");
-        
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+        ok.setVisible(true);
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        
-        
-        if (!option2.getSelectedItem().toString().equals("")){
-            String palabra=option2.getSelectedItem().toString();
-        
-        int numero= hashtable.NumeroHashtable(palabra);
-        
-        String texto="";
-        
-        texto=texto+palabra+"\n"+"-----Autores-----\n";
-        
-        for (int i = 0; i < hashtable.getArray()[numero].getAuthors().length; i++) {
-            
-            texto=texto+hashtable.getArray()[numero].getAuthors()[i]+"\n";
-        }
-        
-        texto=texto+"###Palabras Claves###\n";
-        
-        for (int i = 0; i < hashtable.getArray()[numero].getKeywords().length; i++) {
-            
-            texto=texto+"-"+hashtable.getArray()[numero].getKeywords()[i]+"\n";
-        }
-        
-        AreaTexto.setText(texto);
-        
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_buscarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-      
-        Controlador window4= new Controlador( hashtable, hashtable2, listaPalabrasClave, listaAutores, hashtable3);
-        window4.setVisible(true);
-        this.setVisible(false);
-        
-        
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
+
+        if (!option2.getSelectedItem().toString().equals("")) {
+            String texto= funciones.mostrarAutores(option2.getSelectedItem().toString(), hashtable);
+            AreaTexto.setText(texto);
+
+        }
+    }//GEN-LAST:event_okActionPerformed
+
+    private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
+
+        Guimenu.setVisible(true);
+        this.dispose();
+
+
+    }//GEN-LAST:event_atrasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,19 +201,21 @@ public class Autores extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Autores( hashtable, hashtable3, listaAutores,listaPalabrasClave).setVisible(true);
+                new Autores(hashtable, hashtable3, listaAutores, listaPalabrasClave, Guimenu).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea AreaTexto;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton atras;
+    private javax.swing.JButton buscar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton ok;
     private javax.swing.JComboBox<String> option1;
     private javax.swing.JComboBox<String> option2;
     // End of variables declaration//GEN-END:variables

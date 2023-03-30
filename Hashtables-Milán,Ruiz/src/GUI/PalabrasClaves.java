@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI;
+
+import Classes.GUIFunctions;
 import Classes.Hashtable;
 import Classes.HashTableTitulos;
 import Classes.ListaPalabrasClave;
@@ -25,27 +27,26 @@ public class PalabrasClaves extends javax.swing.JFrame {
     /**
      * Creates new form PalabrasClaves
      */
-    
     static Hashtable hashtable;
     static HashTableTitulos hashtable2;
     static ListaPalabrasClave listaPalabrasClave;
-    
-    public PalabrasClaves(Hashtable hashtable,HashTableTitulos hashtable2,ListaPalabrasClave listaPalabrasClave) {
+    static Controlador GUIMENU;
+    GUIFunctions funciones = new GUIFunctions();
+
+    public PalabrasClaves(Hashtable hashtable, HashTableTitulos hashtable2, ListaPalabrasClave listaPalabrasClave, Controlador GUIMENU) {
         initComponents();
-        this.hashtable=hashtable;
-        this.hashtable2=hashtable2;
-        this.listaPalabrasClave=listaPalabrasClave;
+        this.hashtable = hashtable;
+        this.hashtable2 = hashtable2;
+        this.listaPalabrasClave = listaPalabrasClave;
+        this.GUIMENU = GUIMENU;
+        optionmostrar.setVisible(false);
         setLocationRelativeTo(null);
-        
-        
-        
+
         NodoPalabrasClave pointer = listaPalabrasClave.getPrimero();
 
-        
         while (pointer != null) {
             //recorre el grafo con un nodo aux pointer y se agregan las opciones en el jcombobox
             option1.addItem(pointer.getDato());
-            
 
             pointer = pointer.getSiguiente();
         }
@@ -64,11 +65,13 @@ public class PalabrasClaves extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         AreaTexto = new javax.swing.JTextArea();
         option1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        Buscar = new javax.swing.JButton();
         optionmostrar = new javax.swing.JButton();
         option2 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        goback = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -79,17 +82,17 @@ public class PalabrasClaves extends javax.swing.JFrame {
         AreaTexto.setRows(5);
         jScrollPane1.setViewportView(AreaTexto);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 240, 210));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 360, 210));
 
-        jPanel1.add(option1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, -1, -1));
+        jPanel1.add(option1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 290, -1));
 
-        jButton1.setText("OK");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Buscar.setText("Buscar");
+        Buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, -1, -1));
+        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, -1, -1));
 
         optionmostrar.setText("OK");
         optionmostrar.addActionListener(new java.awt.event.ActionListener() {
@@ -97,82 +100,69 @@ public class PalabrasClaves extends javax.swing.JFrame {
                 optionmostrarActionPerformed(evt);
             }
         });
-        jPanel1.add(optionmostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, -1, -1));
+        jPanel1.add(optionmostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 330, -1, -1));
 
-        jPanel1.add(option2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, -1));
-
-        jLabel1.setText("Palabras Clave");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 90, -1));
-
-        jButton2.setText("ATRAS");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        option2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                option2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
+        jPanel1.add(option2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 350, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
+        jLabel1.setText("Palabras Clave");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 90, -1));
+
+        goback.setText("Atrás");
+        goback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gobackActionPerformed(evt);
+            }
+        });
+        jPanel1.add(goback, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 330, -1, -1));
+
+        jLabel3.setText("Al ingresar, presiona primero el boton de buscar");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/obit.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -10, 780, 390));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 370));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        String palabra=option1.getSelectedItem().toString();
-        
-        
-        
-        int numero=hashtable2.NumeroHashtableTitulo(palabra);
-        
-        ListaTitulos listat=hashtable2.getArray()[numero];
-        
-        NodoTitulos pointer=listat.getPrimero();
-        
-       
-        while(pointer!=null){
+    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
+        option2.removeAllItems();
+        String palabra = option1.getSelectedItem().toString();
+        int numero = hashtable2.NumeroHashtableTitulo(palabra);
+        ListaTitulos listat = hashtable2.getArray()[numero];
+        NodoTitulos pointer = listat.getPrimero();
+        while (pointer != null) {
             option2.addItem(pointer.getDato());
-            pointer=pointer.getSiguiente();
+            pointer = pointer.getSiguiente();
         }
-        
         AreaTexto.setText("");
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+        optionmostrar.setVisible(true);
+
+    }//GEN-LAST:event_BuscarActionPerformed
 
     private void optionmostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionmostrarActionPerformed
-        if (!option2.getSelectedItem().toString().equals("")){
-        String palabra=option2.getSelectedItem().toString();
-        
-        int numero= hashtable.NumeroHashtable(palabra);
-        
-        String texto="";
-        
-        texto=texto+palabra+"\n"+"-----Autores-----\n";
-        
-        for (int i = 0; i < hashtable.getArray()[numero].getAuthors().length; i++) {
-            
-            texto=texto+hashtable.getArray()[numero].getAuthors()[i]+"\n";
-        }
-        
-        texto=texto+"###Palabras Claves###\n";
-        
-        for (int i = 0; i < hashtable.getArray()[numero].getKeywords().length; i++) {
-            
-            texto=texto+"-"+hashtable.getArray()[numero].getKeywords()[i]+"\n";
-        }
-        
-        AreaTexto.setText(texto);
+        if (!option2.getSelectedItem().toString().equals("")) {
+            String texto=funciones.optionMostrarKeywords(option2.getSelectedItem().toString(), hashtable);
+            AreaTexto.setText(texto);
         }
     }//GEN-LAST:event_optionmostrarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        Controlador window4= new Controlador( hashtable, hashtable2, listaPalabrasClave, listaAutores, hashtable3);
-        window4.setVisible(true);
-        this.setVisible(false);
-        
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void gobackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gobackActionPerformed
+        GUIMENU.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_gobackActionPerformed
+
+    private void option2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_option2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,16 +194,18 @@ public class PalabrasClaves extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PalabrasClaves(hashtable,hashtable2,listaPalabrasClave).setVisible(true);
+                new PalabrasClaves(hashtable, hashtable2, listaPalabrasClave, GUIMENU).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea AreaTexto;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton Buscar;
+    private javax.swing.JButton goback;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> option1;

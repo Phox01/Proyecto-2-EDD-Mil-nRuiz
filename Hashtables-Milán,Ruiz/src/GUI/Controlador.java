@@ -3,12 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI;
+
 import Classes.Hashtable;
 import Classes.Resumen;
 import Classes.HashTableTitulos;
 import Classes.HashTableTitulosAutores;
 
-import static GUI.MenuGUI1.hashtable;
+import static GUI.AnalizeGUI.hashtable;
 import static GUI.PalabrasClaves.hashtable;
 import static GUI.PalabrasClaves.hashtable2;
 import static GUI.PalabrasClaves.listaPalabrasClave;
@@ -31,14 +32,15 @@ public class Controlador extends javax.swing.JFrame {
     static HashTableTitulosAutores hashtable3;
     static ListaPalabrasClave listaPalabrasClave;
     static ListaAutores listaAutores;
-    public Controlador(Hashtable hashtable,HashTableTitulos hashtable2,ListaPalabrasClave listaPalabrasClave,ListaAutores listaAutores,HashTableTitulosAutores hashtable3) {
-        this.hashtable=hashtable;
-        this.hashtable2=hashtable2;
-        this.listaPalabrasClave=listaPalabrasClave;
-        this.listaAutores= listaAutores;
-        this.hashtable3=hashtable3;
-        setLocationRelativeTo(null);
+
+    public Controlador(Hashtable hashtable, HashTableTitulos hashtable2, ListaPalabrasClave listaPalabrasClave, ListaAutores listaAutores, HashTableTitulosAutores hashtable3) {
         initComponents();
+        setLocationRelativeTo(null);
+        this.hashtable = hashtable;
+        this.hashtable2 = hashtable2;
+        this.listaPalabrasClave = listaPalabrasClave;
+        this.listaAutores = listaAutores;
+        this.hashtable3 = hashtable3;
     }
 
     /**
@@ -51,69 +53,73 @@ public class Controlador extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        analize = new javax.swing.JButton();
+        keyword = new javax.swing.JButton();
+        author = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("ANALIZAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        analize.setText("Analizar resumen");
+        analize.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                analizeActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 90, 40));
+        jPanel1.add(analize, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 160, 40));
 
-        jButton2.setText("BUSCAR PALABRA CLAVE");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        keyword.setText("Buscar por palabra clave");
+        keyword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                keywordActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 180, 40));
+        jPanel1.add(keyword, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 180, 40));
 
-        jButton3.setText("BUSCAR AUTOR");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        author.setText("Buscar por autor");
+        author.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                authorActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 170, 40));
+        jPanel1.add(author, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 170, 40));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/obit.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 470, 460));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void analizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analizeActionPerformed
 
-
-        MenuGUI1 window2= new MenuGUI1(hashtable);
+        AnalizeGUI window2 = new AnalizeGUI(hashtable, this);
         window2.setVisible(true);
-        this.setVisible(false);        
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       
-       PalabrasClaves window4= new PalabrasClaves(hashtable,hashtable2,listaPalabrasClave);
-        window4.setVisible(true);
-        this.setVisible(false);  
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-      
-        Autores window4= new Autores(hashtable,hashtable3,listaAutores,listaPalabrasClave);
-        window4.setVisible(true);
         this.setVisible(false);
 
+    }//GEN-LAST:event_analizeActionPerformed
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void keywordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keywordActionPerformed
+
+        PalabrasClaves window4 = new PalabrasClaves(hashtable, hashtable2, listaPalabrasClave, this);
+        window4.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_keywordActionPerformed
+
+    private void authorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorActionPerformed
+
+        Autores window4 = new Autores(hashtable, hashtable3, listaAutores, listaPalabrasClave, this);
+        window4.setVisible(true);
+        this.dispose();
+
+
+    }//GEN-LAST:event_authorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,15 +151,16 @@ public class Controlador extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Controlador(hashtable,hashtable2,listaPalabrasClave, listaAutores,hashtable3).setVisible(true);
+                new Controlador(hashtable, hashtable2, listaPalabrasClave, listaAutores, hashtable3).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton analize;
+    private javax.swing.JButton author;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton keyword;
     // End of variables declaration//GEN-END:variables
 }

@@ -19,7 +19,7 @@ import java.nio.file.Files;
  */
 public class ArchivoTxt {
 
-    public Object[] readTxt() {
+    public Object[] readTxt(boolean value, File abre) {
         //Programa que convierte el txt en un objeto "Resumen"
         Object[] data = new Object[2];
         String title = "";
@@ -29,9 +29,11 @@ public class ArchivoTxt {
         String line = "";
         Resumen resumenText = new Resumen(title, authors, body, keywords);
         String resumenCompleto = "";
-        JFileChooser archivo = new JFileChooser();
-        archivo.showOpenDialog(null);
-        File abre = archivo.getSelectedFile();
+        if (value == true) {
+            JFileChooser archivo = new JFileChooser();
+            archivo.showOpenDialog(null);
+            abre = archivo.getSelectedFile();
+        }
         data[0] = abre;
         data[1] = resumenText;
 
@@ -69,23 +71,31 @@ public class ArchivoTxt {
 
             }
             br.close();
-            JOptionPane.showMessageDialog(null, "Lectura exitosa");
+            if (value==true){
+                JOptionPane.showMessageDialog(null, "Lectura exitosa");
+            
+            }
 
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error, asegúrese de introducir un resumen con los sig. campos:\nTítulo\nAutores\nResumen\nPalabras claves");
+            if (value==true) {
+                JOptionPane.showMessageDialog(null, "Error, asegúrese de introducir un resumen con los sig. campos:\nTítulo\nAutores\nResumen\nPalabras claves");
+                
+            }
 
         }
 
         return data;
     }
 
-    public void copyTxt(File from, String name) {
+    public boolean copyTxt(File from, String name) {
         //Programa que convierte el txt en un objeto "Resumen" y copia su contenido en otro txt
-        File dest = new File("SavedData/" +name+ ".txt");
+        File dest = new File("SavedData/" + name + ".txt");
         try {
             copyFile(from, dest);
+            return true;
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "El archivo ya existe");
+            JOptionPane.showMessageDialog(null, "El archivo "+name+" ya existe");
+            return false;
 
         }
     }

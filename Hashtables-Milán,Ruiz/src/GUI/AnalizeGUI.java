@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI;
+
+import Classes.GUIFunctions;
 import Classes.Hashtable;
 import Classes.Resumen;
 import static GUI.Autores.hashtable;
@@ -15,30 +17,28 @@ import static GUI.Autores.listaPalabrasClave;
  *
  * @author enriq
  */
-public class MenuGUI1 extends javax.swing.JFrame {
-
+public class AnalizeGUI extends javax.swing.JFrame {
+    GUIFunctions funciones=new GUIFunctions();
     /**
      * Creates new form MenuGUI
      */
-    
     static Hashtable hashtable;
-    public MenuGUI1(Hashtable hashtable) {
+    static Controlador controladorGUI;
+
+    public AnalizeGUI(Hashtable hashtable, Controlador controladorGUI) {
         initComponents();
-        this.hashtable=hashtable;
+        this.hashtable = hashtable;
         setLocationRelativeTo(null);
+        this.controladorGUI=controladorGUI;
         
-        
+
         for (int i = 0; i < hashtable.getArray().length; i++) {
-            
-            
-            if(hashtable.getArray()[i]!=null){
+
+            if (hashtable.getArray()[i] != null) {
                 Investigaciones.addItem(hashtable.getArray()[i].getTitle());
             }
         }
-        
-        
-        
-        
+
     }
 
     /**
@@ -52,11 +52,11 @@ public class MenuGUI1 extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         Investigaciones = new javax.swing.JComboBox<>();
-        boton = new javax.swing.JButton();
+        botonok = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         AreaTexto = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        atras = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,38 +69,38 @@ public class MenuGUI1 extends javax.swing.JFrame {
                 InvestigacionesActionPerformed(evt);
             }
         });
-        jPanel1.add(Investigaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 280, 40));
+        jPanel1.add(Investigaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 330, 30));
 
-        boton.setText("OK");
-        boton.addActionListener(new java.awt.event.ActionListener() {
+        botonok.setText("OK");
+        botonok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonActionPerformed(evt);
+                botonokActionPerformed(evt);
             }
         });
-        jPanel1.add(boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, -1, -1));
+        jPanel1.add(botonok, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, -1));
 
         AreaTexto.setColumns(20);
         AreaTexto.setRows(5);
         jScrollPane1.setViewportView(AreaTexto);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 250, 120));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 380, 210));
 
-        jLabel1.setText("ANALISIS");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 70, -1));
+        jLabel1.setText("Análisis");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 70, -1));
 
-        jButton1.setText("ATRAS");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        atras.setText("Atrás");
+        atras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                atrasActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, -1, -1));
+        jPanel1.add(atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 370, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/obit.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 300));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 410));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 270));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -109,55 +109,25 @@ public class MenuGUI1 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_InvestigacionesActionPerformed
 
-    private void botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActionPerformed
-     
-       String texto=Investigaciones.getSelectedItem().toString();
-       String mostrar="";
-        
-       int numerobusqueda=hashtable.NumeroHashtable(texto);
-        
-       Resumen res= hashtable.getArray()[numerobusqueda];
-       
-       String hola= res.getBody();
-       String[] dividido1 = hola.split(" ");
-       
-        System.out.println(res.getKeywords().length);
-       
-        for (int i = 0; i < res.getKeywords().length; i++) {
-            
-            int contador =0;
-            String palabra=res.getKeywords()[i];
-            
-            System.out.println(palabra);
-            
-            
-        for (int k = 0; k < dividido1.length; k++) {
-            if (dividido1[k].contains(palabra)){
-                contador++;
-            }
-            
-            
-            
-        }
-          mostrar=mostrar+"palabra clave : "+palabra+" aparece "+ Integer.toString(contador)+" veces\n";  
-            
-            
-        }
-       AreaTexto.setText(mostrar);
-       
-        
-        
-    }//GEN-LAST:event_botonActionPerformed
+    private void botonokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonokActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        Controlador window4= new Controlador( hashtable, hashtable2, listaPalabrasClave, listaAutores, hashtable3);
-        window4.setVisible(true);
-        this.setVisible(false);
-        
-        
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+        String texto = Investigaciones.getSelectedItem().toString();
+        int numerobusqueda = hashtable.NumeroHashtable(texto);
+        Resumen res = hashtable.getArray()[numerobusqueda];
+        String mostrar= funciones.analizeSummary(texto, numerobusqueda, res);
+
+        AreaTexto.setText(mostrar);
+
+
+    }//GEN-LAST:event_botonokActionPerformed
+
+    private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
+
+        controladorGUI.setVisible(true);
+        this.dispose();
+
+
+    }//GEN-LAST:event_atrasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,21 +146,23 @@ public class MenuGUI1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuGUI1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AnalizeGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuGUI1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AnalizeGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuGUI1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AnalizeGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuGUI1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AnalizeGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuGUI1(hashtable).setVisible(true);
+                new AnalizeGUI(hashtable, controladorGUI).setVisible(true);
             }
         });
     }
@@ -198,8 +170,8 @@ public class MenuGUI1 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea AreaTexto;
     private javax.swing.JComboBox<String> Investigaciones;
-    private javax.swing.JButton boton;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton atras;
+    private javax.swing.JButton botonok;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
